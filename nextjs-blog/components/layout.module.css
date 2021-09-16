@@ -1,0 +1,25 @@
+.container {
+    min-height: 100vh;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.container > div {
+    width: 100%;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+.main {
+    flex: 1;
+    display: grid;
+    place-content: center;
+}
+.footer {
+    border-top: 1px solid #eaeaea;
+    padding: 1em 0;
+    text-align: center;
+}
