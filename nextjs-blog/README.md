@@ -122,7 +122,9 @@ Let's implement Static rendering for some posts.
 
     *   This returned data is actual props, which are going to be used by react component on same file.
 
-Now here `getStaticProps` function is only called once in production mode, that is, during **build** time of the app.  
+*   Now here `getStaticProps` function is only called once in production mode, that is, during **build** time of the app.    
+
+*	`getStaticProps` can be used to communicate with external API to fetch data (that doesn't ofter change) and use it in static pages.
 
 >   getStaticProps can only be exported from a page. You can’t export it from non-page files.
 
@@ -140,7 +142,7 @@ export async function getServerSideProps(context) {
 }
 ```
 
-*   `context` parameter contains request specific parameters.
+*   `context` parameter contains **request** specific parameters.
 
 ### Client-side rendering
 
