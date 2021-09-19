@@ -35,3 +35,18 @@ export function getSortedPostsData() {
     }
   })
 }
+
+// will return array of object that contain `params` which contains `id` (or filename)
+  //  each object has it's `param` in it.
+  //  { { params: { id: "filename_1" } }, { params: { id: "filename_2" } }, { params: { id: "filename_3" } }, ... }
+export function getAllPostIds() {
+  const fileNames = fs.readdirSync(postsDirectory);
+
+  return fileNames.map(fileName => {
+    return {
+      params: {
+        id: fileName.replace(/\.md$/, '')
+      }
+    }
+  })
+}

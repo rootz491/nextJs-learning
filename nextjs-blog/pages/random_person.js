@@ -9,13 +9,13 @@ export default function random_person() {
         //  first arg is 'URL'
         //  second arg is 'function' which takes that URL and return the result/response.
         //  this hook returns 2 things, data (if req is successful) or error (if req failed or some error occured)
-    const { data, error } = useSWR('https://random-data-api.com/api/users/random_user/2', async url => {
+    const { data, error } = useSWR('https://random-data-api.com/api/users/random_user/', async url => {
         const res = await fetch(url);
+        setLoading(false);
         if (res.status == 200) {
             let data = await res.json();
             return data;
         }
-        setLoading(false);
         return false;
     });
 
