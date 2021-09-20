@@ -203,3 +203,29 @@ It's struture consists of 3 functions:
     //  code here
   }
   ```
+
+----
+
+##  Problem
+
+* `Remark` is used to convert markdown into HTML.
+  * in development machine, this syntax works:
+  ```js
+  import {remark} from 'remark'
+  import {html} from 'remark-html'
+  ...
+  const html = await remark().use(html).process(markDown)
+  ```
+
+  * in production server, it's like this:
+  ```js
+  import remark from 'remark'
+  import {html} from 'remark-html'
+  ...
+  const html = await remark().use(html).process(markDown)
+  ```
+
+  * Error i'm getting if i dont do that is:
+  ```
+  TypeError: (0 , remark__WEBPACK_IMPORTED_MODULE_3__.default) is not a function
+  ```

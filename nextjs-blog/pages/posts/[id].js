@@ -31,7 +31,7 @@ export default function Post({ postData }) {
         <Layout home={false} title={postData.title}>
             <div className="main">
                 <h1>{postData.title}</h1>
-                <span><Date dateString={postData.date} /></span>
+                <small><Date dateString={postData.date} /></small>
                 <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }}></div>
             </div>
             <style jsx>{`
@@ -39,11 +39,16 @@ export default function Post({ postData }) {
                     width: clamp(70%, 800px, 95%);
                     margin: auto;
                 }
-                .main > h1, .main > span {
+                .main > h1, .main > small {
+                    width: 100%;
                     text-align: center;
                 }
                 .main > div a {
                     color: blue;
+                }
+                img {
+                    width: 50%;
+                    margin: auto;
                 }
             `}</style>
         </Layout>
