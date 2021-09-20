@@ -15,7 +15,7 @@ export default function posts({ allPostsData }) {
         <Layout title="All posts" home={false}>
             <div className="main">
                 <h1>all posts</h1>
-                <h3>- Hardcoded (server-side) Posts</h3>
+                <h3>- Hardcoded Posts</h3>
                 <p>
                     <Link href="/posts/first-post">
                         <a>Hello World</a>

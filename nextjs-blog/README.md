@@ -163,3 +163,43 @@ export default function Profile() {
   return <div>hello {data.name}!</div>
 }
 ```
+
+---
+
+### Dynamic Routing
+
+Filesystem path to dynmic routed page looks like this: `/pages/posts/[id].js`
+
+It's struture consists of 3 functions:  
+* `getStaticPaths` returns object of all possible values for this `id` of dynamic page.
+  * This is how returned value looks like:
+  ```json
+  {
+    "paths": {
+      "params": {
+        "id": 1
+      },
+      "params": {
+        "id": 2
+      },
+    },
+    "fallback": false
+  }
+  ```
+* `getStaticProps` returns all required props for react function of page.
+  * This is how returned value look like:
+  ```json
+  {
+    "props": {
+      "title": "abc",
+      "date": "03-12-2020",
+      "contentHtml": "...",
+    }
+  }
+  ```
+* `react function` which will render the UI on the client-side.
+  ```js
+  export default function Post({ title, date, contentHtml }) {
+    //  code here
+  }
+  ```

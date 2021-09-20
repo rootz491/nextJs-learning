@@ -1,9 +1,12 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
+import {remark} from 'remark'
+import html from 'remark-html'
 
 const postsDirectory = path.join(process.cwd(), 'posts')
 
+//  return metadata about stored posts using `gray-matter` to parse that metadata.
 export function getSortedPostsData() {
   // Get file names under /posts
   const fileNames = fs.readdirSync(postsDirectory)
@@ -15,7 +18,7 @@ export function getSortedPostsData() {
     const fullPath = path.join(postsDirectory, fileName)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
 
-    // Use gray-matter to parse the post metadata section
+    // Use gray-matter to parse the post's metadata section
     const matterResult = matter(fileContents)
 
     // Combine the data with the id
@@ -36,7 +39,7 @@ export function getSortedPostsData() {
   })
 }
 
-// will return array of object that contain `params` which contains `id` (or filename)
+//  return array of object that contain `params` which contains `id` (or filename)
   //  each object has it's `param` in it.
   //  { { params: { id: "filename_1" } }, { params: { id: "filename_2" } }, { params: { id: "filename_3" } }, ... }
 export function getAllPostIds() {
@@ -49,4 +52,26 @@ export function getAllPostIds() {
       }
     }
   })
+}
+
+//  return post data of post whose id is given as arg
+export async function getPostData(id) {
+  const fullPath = path.join(postsDirectory, `${id}.md`);
+  const file = fs.readFileSync(fullPath, "utf-8");
+
+  //  gray-matter to parse thru file and get data
+  const postContent = matter(file);
+
+  // remark to convert markdown into html string
+  const processedContent = await remark()
+    .use(html)
+    .process(postContent.content)
+  
+  const contentHtml = processedContent.toString()
+
+  return {
+    id,
+    ...postContent.data,
+    contentHtml
+  }
 }

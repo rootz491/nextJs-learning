@@ -21,7 +21,9 @@ I know quiet a few stuff...Like:
 -   **NextJs**  Popular React framework known for it's Production capabilities like SSR and performance.
 etc...
 
-
 I'm still learning all these things and trying to make something awesome with all of 'em.
+
+![normal img](/me.jpg)
+Lol, image of me enjoy :)
 
 `~sayonara`
