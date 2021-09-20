@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import {remark} from 'remark'
+import remark from 'remark'
 import html from 'remark-html'
 
 const postsDirectory = path.join(process.cwd(), 'posts')
@@ -68,8 +68,8 @@ export async function getPostData(id) {
     .process(postContent.content)
   
   const contentHtml = processedContent.toString()
-
-  return {
+  console.log(remark);
+ return {
     id,
     ...postContent.data,
     contentHtml
