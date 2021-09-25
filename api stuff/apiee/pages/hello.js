@@ -26,7 +26,7 @@ export default function person() {
                 <Link href="/">
                     <a className={styles.link}>back</a>
                 </Link>
-                <Link href="/person/get">
+                <Link href="/person/get-csr">
                     <a className={styles.link}>next</a>
                 </Link>
             </div>

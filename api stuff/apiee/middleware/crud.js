@@ -1,4 +1,4 @@
-import Person from "./init";
+import Person from "../models/person";
 
 // CRUD methods
 export const getPeople = async () => {
@@ -10,12 +10,12 @@ export const getPeople = async () => {
     }
 }
 
-export const addPerson = async (name, age) => {
+export const findPersonByName = async name => {
     try {
-        const person = new Person();
-        person.name = name;
-        person.age = age;
-        return { success: true, person: await person.save() }
+        const person = await Person.find({name}).exec();
+        if (person)
+            return { success: true, person }
+        else throw { message: "Person by this name does not exist." }
     } catch (error) {
         return { success: false, error: error.message }
     }

@@ -1,25 +1,41 @@
-import { getPeople, addPerson } from "../../lib/mongo";
+import connectDB from "../../middleware/init";
+import Person from "../../models/person";
+import {getPeople} from "../../middleware/crud";
 
-export default async function handler(req, res) {
+const handler =  async (req, res) => {
+    //  get params from req
     const {
-        body: {
-            name, age
-        },
+        body,
         method
     } = req;
-    // console.log(req);
 
+    //  check req type and handle them
     switch(method) {
+        
         case "GET":
             const data = await getPeople();
             res.json({...data});
             break;
+
         case "POST":
-            console.log(name, age)
-            const person = await addPerson(name, age);
-            res.status(201).json(person);
+            // verify user input
+            if (body.name.length < 5) res.status(400).json({message: "name must have at-least 5 characters"});
+            if (body.age < 5 || body.age > 120) res.status(400).json({message: "age must be between 5 and 120"});
+            // create new Person instance using user provided data
+            const person = new Person({
+                name: body.name, 
+                age: body.age
+            });
+            //  save Person instance in DB
+            const newPerson = await person.save().catch(err => res.status(500).json({message: err.message}));
+            // return new person
+            res.status(201).json({person: newPerson});
             break;
+        
         default:
-            res.status(405)
+            res.status(405);
     }
 }
+
+// before handling req, first connect to DB
+export default connectDB(handler);
