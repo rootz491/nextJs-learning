@@ -1,0 +1,21 @@
+.btns {
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    width: 30px;
+    height: 30px;
+    margin: 0 1em;
+}
+
+.header {
+    width: 100%;
+    padding: 1em;
+}
+
+.avatar img {
+    border-radius: 9999px;
+    border: 1px solid black;
+    width: 100%;
+}
