@@ -117,7 +117,7 @@ export default function Home() {
 							</div>
 						</div>
 					</div>
-					<div id="four">
+					<div id="four" className="absolute">
 						<div id="four-1" className="text-center space-y-16 py-16 px-1 text-white bg-[#494949]">
 							<h1 className="text-xl sm:text-3xl font-semibold">Start Reading Right Now</h1>
 							<div className="flex justify-evenly items-center font-light sm:text-lg">
